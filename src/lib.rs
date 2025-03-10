@@ -89,7 +89,7 @@ impl fmt::Debug for AppStateInner {
     }
 }
 
-#[cfg(feature = "test-util")]
+#[cfg(test)]
 mod test_util {
     use super::*;
     use sqlx::Executor;
@@ -120,7 +120,7 @@ mod test_util {
             Some(url) => url.to_string(),
             None => "postgres://postgres:postgres@localhost:5432".to_string(),
         };
-        let tdb = TestPg::new(url, std::path::Path::new("../migrations"));
+        let tdb = TestPg::new(url, std::path::Path::new("./migrations"));
         let pool = tdb.get_pool().await;
 
         // run prepared sql to insert test data
