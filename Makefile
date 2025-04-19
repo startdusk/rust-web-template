@@ -8,6 +8,10 @@ init:
 	cargo deny fetch
 	cargo b
 
+.PHONY: test
+test:
+	@cargo nextest run --all-features --examples
+
 .PHONY: genkey
 genkey:
 	@openssl genpkey -algorithm ed25519 -out encoding.pem
